@@ -1,0 +1,111 @@
+﻿@model HengXinSMS.Models.User
+@{
+    ViewBag.Title = "更改密码";
+}
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+   <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signup.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_UpdatePwd").click(function () {
+                var username = $("#UserName").val();
+                var password = $("#PassWord").val();
+                var newpassword = $("#NewPassWord").val();
+                var repatnewpassword = $("#RepatNewPassWord").val();
+             
+                if (username == "") {
+                    alert("用户名不能为空！");
+                    $("#UserName").focus();
+                    return;
+                }
+                if (password == "") {
+                    alert("旧密码不能为空！");
+                    $("#PassWord").focus();
+                    return;
+                }
+                if (newpassword == "") {
+                    alert("新密码不能为空！");
+                    $("#NewPassWord").focus();
+                    return;
+                }
+                if (repatnewpassword == "") {
+                    alert("重复新密码不能为空！");
+                    $("#RepatNewPassWord").focus();
+                    return;
+                }
+                if (repatnewpassword != newpassword) {
+                    alert("两次输入新密码不一致，请重新输入！");
+                    $("#PassWord").focus();
+                    return;
+                }
+                $.ajax({
+                    url: "/ChangPwd/updatepwd",
+                    data: {
+                        "UserName": $("#UserName").val(),
+                        "PassWord": $("#PassWord").val(),
+                        "NewPassWord": $("#NewPassWord").val(),
+                    },
+                    type: "post",
+                    dataType: "text",
+                    success: function (msg) {
+                        if (msg == "Success") {
+                            alert("修改密码成功！");
+                            window.location.href = "/Login/login";
+                        }
+                        else
+                        {
+                            alert("修改失败！");
+                        }
+                      
+                    }
+
+                });
+            });
+        });
+ </script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">
+            <img src="http://www.yokogawa.com/g_common/img/identity_01.gif" />
+        </a>
+    </div>
+    <div class="login-wrapper">
+        <div class="box">
+            <div class="content-wrap">
+                <h6>更改密码</h6>
+                <input class="form-control" type="text" placeholder="用户名"id="UserName"/>
+                <input class="form-control" type="password" placeholder="旧密码:"id="PassWord"/>
+                <input class="form-control" type="password" placeholder="新密码:" id="NewPassWord" />
+                <input class="form-control" type="password" placeholder="重复新密码"id="RepatNewPassWord"/>
+                <div class="action">
+                    <a class="btn-glow primary signup" id="btn_UpdatePwd" >提交</a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="already">
+            <p>已有帐号?</p>
+            <a href="\Login\login">登录</a>
+        </div>
+    </div>
+
+	<!-- scripts -->
+  
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
