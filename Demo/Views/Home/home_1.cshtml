@@ -1,0 +1,313 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="60">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+    <script src="~/js/echarts.js"></script>
+</head>
+<body >
+   <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home\home"><img src="~/img/logo/logo_meitu_2.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home\home_today">Today</a></li>
+                    <li><a href="\Home\home">Tomorrow</a></li>
+                    <li><a href="\Home\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Site Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home\home_today_1">Today</a></li>
+                    <li><a href="\Home\home_1">Tomorrow</a></li>
+                    <li><a href="\Home\home_third_1">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Welcome：@Session["UserName"] 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="\Home\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>用户管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li><a href="\UserList\userlist">用户列表</a></li>
+                   <li ><a href="\UserList\newuser">添加用户</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-briefcase"></i>
+                    <span>项目管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ProjectList\projectlist">项目列表</a></li>
+                    <li><a href="\ProjectList\newproject">添加项目</a></li>
+                </ul>
+            </li>
+             <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList\checkforklift">OML审核</a></li>
+                    <li><a href="\ForkliftList\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList\after_Schedule">费用管理</a></li>
+                    <li><a href="\ForkliftList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList\projectlist" >选择项目</a></li>
+                    <li><a href="\PackagingList\packaginglist">申请列表</a></li>
+                    <li><a href="\PackagingList\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList\checkpackaging" >OML审核</a></li>
+                    <li><a href="\PackagingList\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList\after_Schedule">费用管理</a></li>
+                    <li><a href="\PackagingList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList\projectlist" >选择项目</a></li>
+                    <li><a href="\TransportList\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList\newtransport">运输申请</a></li>
+                    <li><a href="\TransportList\checktransports">OML审核</a></li>
+                    <li><a href="\TransportList\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList\after_Schedule">费用管理</a></li>
+                    <li><a href="\TransportList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-ok"></i>
+                    <span>场地安排</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                     <li><a href="\SiteManagement\sitemanagement">安排列表(YSW)</a></li>
+                    <li><a href="\SiteManagement\sitemanagement_1">安排列表(YWP)</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-th-large"></i>
+                    <span>报表明细</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li><a href="\Report_Forklift.aspx" >叉车报表</a></li>
+                    <li><a href="\Report_Packaging.aspx" >包装报表</a></li>
+                    <li><a href="\Report_Transport.aspx">运输报表</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-folder-close"></i>
+                    <span>文件检索</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\Forklifts">叉车申请文件</a></li>
+                    <li><a href="\Packagings">包装申请文件</a></li>
+                    <li><a href="\Transports">运输申请文件</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <div class="content">
+        <!-- upper main stats -->
+        <div id="main-stats">
+            <div class="row stats-row">
+                <div class="col-md-3 col-sm-1 stat">
+                    <div class="data">
+                        <span class="number">@ViewBag.Message_Forklifts</span>
+                        叉车申请
+                    </div>
+                    <span class="date">当前 </span>
+                </div>
+                <div class="col-md-3 col-sm-1 stat">
+                    <div class="data">
+                        <span class="number">@ViewBag.Message_Packagings </span>
+                        包装申请
+                    </div>
+                    <span class="date">当前</span>
+                </div>
+                <div class="col-md-3 col-sm-1 stat">
+                    <div class="data">
+                        <span class="number">@ViewBag.Message_Transports</span>
+                        运输申请
+                    </div>
+                    <span class="date">当前</span>
+                </div>
+                 <div class="col-md-3 col-sm-1 stat last">
+                    <div class="data">
+                        <span class="number">0</span>
+                        费用金额
+                    </div>
+                    <span class="date">当前</span>
+                </div> 
+            </div>
+        </div>
+        <!-- end upper main stats -->
+        <div id="pad-wrapper">
+        <!-- statistics chart built with jQuery Flot -->
+                      <div id="main" style="width: inherit;height:400px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '@ViewBag.Tomorrow YWP各时段申请场地占用情况'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['叉车申请', '包装申请', '运输申请']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['7:00-8:00', '8:00-9:00', '9:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '16:00-17:00', '17:00-18:00']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '叉车申请',
+                    type: 'bar',
+                    data: [@ViewBag.Forklift_7,@ViewBag.Forklift_8,@ViewBag.Forklift_9, @ViewBag.Forklift_10, @ViewBag.Forklift_11,@ViewBag.Forklift_12, @ViewBag.Forklift_13, @ViewBag.Forklift_14,@ViewBag.Forklift_15,@ViewBag.Forklift_16,@ViewBag.Forklift_17]
+                },
+                {
+                    name: '包装申请',
+                    type: 'bar',
+                    stack: '广告',
+                    data: [@ViewBag.Packaging_7,@ViewBag.Packaging_8,@ViewBag.Packaging_9, @ViewBag.Packaging_10, @ViewBag.Packaging_11, @ViewBag.Packaging_12, @ViewBag.Packaging_13, @ViewBag.Packaging_14, @ViewBag.Packaging_15, @ViewBag.Packaging_16,@ViewBag.Packaging_17]
+                },
+                {
+                    name: '运输申请',
+                    type: 'bar',
+                    stack: '广告',
+                    data: [@ViewBag.Transport_7,@ViewBag.Transport_8,@ViewBag.Transport_9, @ViewBag.Transport_10, @ViewBag.Transport_11, @ViewBag.Transport_12, @ViewBag.Transport_13, @ViewBag.Transport_14, @ViewBag.Transport_15,@ViewBag.Transport_16,@ViewBag.Transport_17]
+                }
+            ]
+        };
+            myChart.setOption(option);
+            $('.slider-button').click(function () {
+                if ($(this).hasClass("on")) {
+                    $(this).removeClass('on').html($(this).data("off-text"));
+                } else {
+                    $(this).addClass('on').html($(this).data("on-text"));
+                }
+            });
+
+            $('.nav-tabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+    </script>
+            <!-- end statistics chart -->
+        </div>
+     </div>
+   
+</body>
+</html>
