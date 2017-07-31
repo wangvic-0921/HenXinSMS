@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+</head>
+<body>
+    <div class="login-wrapper">
+        <a href="index.html">
+            <img class="logo"  src="http://www.yokogawa.com/g_common/img/identity_01.gif">
+        </a>
+
+        <div class="box">
+            <div class="content-wrap">
+                <input class="form-control" type="text" placeholder="用户名"   id= "UserName">
+                <input class="form-control" type="password" placeholder="密码" id ="PassWord">
+                <a href="#" class="forgot" id="btn_Help">忘记密码?</a>
+               
+                <div class="remember">
+                    <span class="pull-left"><a class="btn-glow primary login"  id="btn_Cancel" >取消</a></span>
+					<span class="pull-right"><a class="btn-glow primary login" id="btn_Login" >登录</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="no-account">
+            <a href="\SignUp\signup">注册</a>
+            <a href="\ChangPwd\changepwd">修改密码</a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $("html").css("background-image", "url('/img/bgs/7.jpg')");
+    });
+</script>
+<script type="text/javascript">
+     $(function () {
+         $("#btn_Help").click(function () {
+             alert("请联系OML相关人员协助解决！");
+             return;
+         });
+     });
+</script>
+<script type="text/javascript">
+     $(function () {
+         $("#btn_Login").click(function () {
+             var username = $("#UserName").val();
+             var password = $("#PassWord").val();
+             if (username == "") {
+                 alert("用户名不能为空！");
+                 $("#UserName").focus();
+                 return;
+             }
+             if (password == "") {
+                 alert("密码不能为空！");
+                 $("#PassWord").focus();
+                 return;
+             }
+             $.post("/Login/Account",
+            {
+                "UserName": $("#UserName").val(),
+                "PassWord": $("#PassWord").val(),
+            },
+            function (data) {
+                var yn = data.split(':');
+                if (yn[0] == "ok") {
+                    window.location.href = yn[1];
+                }
+                else {
+                    alert(yn[1]);
+                }
+            })
+         });
+     });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#btn_Cancel").click(function () {
+            $("#UserName").attr("value", "");
+            $("#PassWord").attr("value", "");
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).keypress(function (e) {
+        var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+        if (eCode == 13) {
+            $("#btn_Login").click()
+            //自己写判断操作
+        }
+    });
+</script>
+</html>
