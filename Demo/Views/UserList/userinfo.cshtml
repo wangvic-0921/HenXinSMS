@@ -1,0 +1,119 @@
+﻿@model HengXinSMS.Models.User
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="~/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="~/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="~/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="~/css/compiled/icons.css">
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="~/css/lib/font-awesome.css">
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="~/css/compiled/personal-info.css" type="text/css" media="screen" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="~/img/logo.png"></a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="#">叉车管理</a></li>
+                <li><a href="#">包装管理</a></li>
+                <li><a href="#">运输管理</a></li>
+                <li><a href="#">报表明细</a></li>
+            </ul>
+        </nav>        
+    </header>
+    <!-- end navbar -->
+
+	<!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content wide-content">
+        <div class="settings-wrapper" id="pad-wrapper">
+            <div class="row">
+
+                <!-- edit form column -->
+                <div class="col-md-7 personal-info">
+                    <div class="alert alert-info">
+                        <i class="icon-lightbulb"></i>
+                        请核对您的用户级别，您的用户级别，决定你的操作范围！
+                        <br>
+                         如果您已是高级用户 <strong>仍无法操作</strong>请联系管理员！
+                    </div>
+                    <h5 class="personal-title">Personal info</h5>
+
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">编号:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value=" @Html.DisplayFor(model => model.ID)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">用户名:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value=" @Html.DisplayFor(model => model.UserName)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">密码:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value=" @Html.DisplayFor(model => model.PassWord)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">部门:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value=" @Html.DisplayFor(model => model.Depart)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">级别:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value=" @Html.DisplayFor(model => model.Level)" />
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <a href="\Home\home">返回</a>
+                        </div>
+                    </form>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <!-- end main container -->
+	<!-- scripts -->
+   
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+</body>
+</html>
