@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="~/css/matrix-style.css" />
+<link href="~/css/matrix-media.css" rel="stylesheet" />
+<link href="~/font-awesome/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+<div >
+  <div >
+    <div id="breadcrumb"> <a href="\Home\home" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">UploadFile</a> <a href="#" class="current">Success</a> </div>
+    <h1>  Welcome： @Session["UserName"].ToString() </h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+            <h5>上传成功</h5>
+          </div>
+          <div class="widget-content">
+            <div class="error_ex">
+              <h1>SUCCESS</h1>
+              <h3>您的文件上传成功!</h3>
+              <p>You file has been uploaded successfully</p>
+              <a class="btn btn-warning btn-big"  href="\ForkliftList\newforklift">返回申请</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2016 &copy; HengXin SMS. Designed by VicWang <a href="http://www.cnblogs.com/sola0921/">Contact Me</a> </div>
+</div>
+<!--end-Footer-part-->
+<script src="~/js/jquery.min.js"></script> 
+<script src="~/js/jquery.ui.custom.js"></script> 
+<script src="~/js/bootstrap.min.js"></script> 
+<script src="~/js/matrix.js"></script>
+</body>
+</html>
+
