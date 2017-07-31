@@ -1,0 +1,111 @@
+﻿@model HengXinSMS.Models.User
+
+@{
+    ViewBag.Title = "注册";
+}
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+   <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signup.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_SignUp").click(function () {
+                var username = $("#UserName").val();
+                var password = $("#PassWord").val();
+                var password_1 = $("#PassWord_1").val();
+                var depart = $("#Depart").val();
+                if (username == "") {
+                    alert("用户名不能为空！");
+                    $("#UserName").focus();
+                    return;
+                }
+                if (password == "") {
+                    alert("密码不能为空！");
+                    $("#PassWord").focus();
+                    return;
+                }
+                if (password_1== "") {
+                    alert("密码重复不能为空！");
+                    $("#PassWord").focus();
+                    return;
+                }
+                if (depart == "") {
+                    alert("部门名称不能为空！");
+                    $("#Depart").focus();
+                    return;
+                }
+                if (password != password_1) {
+                    alert("两次输入密码不一致，请重新输入！");
+                    $("#PassWord").focus();
+                    return;
+                }
+                $.ajax({
+                    url: "/SignUp/adduser",
+                    data: {
+                        "UserName": $("#UserName").val(),
+                        "PassWord": $("#PassWord").val(),
+                        "Depart": $("#Depart").val(),
+                    },
+                    type: "post",
+                    dataType: "text",
+                    success: function (msg) {
+                        if (msg == "Success") {
+                            alert("注册成功！");
+                            window.location.href = "/Login/login";
+                        }
+                        else if (msg == "Error") {
+                            alert("注册失败！");
+                        }
+                        else {
+                            alert("注册失败，该用户名已存在！");
+                        }
+                    }
+
+                });
+            });
+        });
+ </script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">
+            <img src="http://www.yokogawa.com/g_common/img/identity_01.gif" />
+        </a>
+    </div>
+    <div class="login-wrapper">
+        <div class="box">
+            <div class="content-wrap">
+                <h6>注册</h6>
+                <input class="form-control" type="text" placeholder="用户名例：wangwei"id="UserName"/>
+                <input class="form-control" type="password" placeholder="密码:"id="PassWord"/>
+                <input class="form-control" type="password" placeholder="重复密码"id="PassWord_1"/>
+                <input class="form-control" type="text" placeholder="部门例:PSE"id="Depart"/>
+                <div class="action">
+                    <a class="btn-glow primary signup" id="btn_SignUp" >注册</a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="already">
+            <p>已有帐号?</p>
+            <a href="\Login\login">登录</a>
+        </div>
+    </div>
+
+	<!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
