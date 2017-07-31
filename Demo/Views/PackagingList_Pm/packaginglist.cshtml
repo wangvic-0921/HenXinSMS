@@ -1,0 +1,240 @@
+﻿@model PagedList.IPagedList< HengXinSMS.Models.Packaging>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+   <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home_PM\home"><img src="/img/logo.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_PM\home_today">Today</a></li>
+                    <li><a href="#">Tomorrow</a></li>
+                    <li><a href="\Home_PM\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Site Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_PM\home_today_1">Today</a></li>
+                    <li><a href="\Home_PM\home_1">Tomorrow</a></li>
+                    <li><a href="\Home_PM\home_third_1">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Welcome：@Session["UserName"] 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+   <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                 <a href="\Home_PM\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList_Pm\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList_Pm\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList_Pm\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList_Pm\after_PM_check">审核状态</a></li>
+                    <li><a href="\ForkliftList_Pm\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList_Pm\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+            <li  class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList_Pm\projectlist">选择项目</a></li>
+                    <li><a href="\PackagingList_Pm\packaginglist" class="active">申请列表</a></li>
+                    <li><a href="\PackagingList_Pm\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList_Pm\after_PM_check"  >审核状态</a></li>
+                    <li><a href="\PackagingList_Pm\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList_Pm\after_Schedule" >安排完毕</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList_Pm\projectlist">选择项目</a></li>
+                    <li><a href="\TransportList_Pm\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList_Pm\newtransport">运输申请</a></li>
+                    <li><a href="\TransportList_Pm\after_PM_check">审核状态</a></li>
+                    <li><a href="\TransportList_Pm\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList_Pm\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-th-large"></i>
+                    <span>报表明细</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\Report_Forklift_Pm.aspx">叉车报表</a></li>
+                    <li><a href="\Report_Packaging_Pm.aspx">包装报表</a></li>
+                    <li><a href="\Report_Transport_Pm.aspx">运输报表</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <div class="content">
+		<div id="pad-wrapper" class="users-list">
+            <div class="row header">
+                <h3>包装申请列表
+                </h3>
+                <div class="col-md-10 col-sm-12 col-xs-12 pull-right">
+                    <link href="~/Content/PagedList.css" rel="stylesheet" />
+                    <br />
+                    @using (Html.BeginForm("packaginglist", "PackagingList_Pm", FormMethod.Get))
+                    {
+                        <p>
+                            <span>任意关键词查找: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, "")</span>
+                            <span>&#8194;</span>
+                            <span>
+                                <input type="submit" name="提交" value="Find" class="btn btn-primary" /></span>
+                            <a href="\PackagingList_Pm\newpackaging" class="btn-flat success pull-right">
+                                <span>&#43;</span>
+                                添加申请
+                            </a>
+                        </p>
+                    }
+                </div>
+              </div>
+            <table class="table table-bordered table-hover definewidth m10">
+                <thead>
+                    <tr>
+                        <th>申请人</th>
+                        <th>部门</th>
+                        <th>@Html.ActionLink("项目名", "packaginglist", new { sortOrder = ViewBag.ProjectNameSortParm })</th>
+                        <th>项目号</th>
+                        <th>项目经理</th>
+                        <th>@Html.ActionLink("申请日期", "packaginglist", new { ViewBag.ApplicationDateSortParm })</th>
+                        <th>预使用日期</th>
+                        <th>预开始时间</th>
+                        <th>预结束时间</th>
+                        <th>地点</th>
+                        <th>PM审批</th>
+                        <th>OML审批</th>
+                        <th>安排</th>
+                        <th>操作一</th> 
+                        <th>操作二</th> 
+                        <th>操作三</th> 
+                        <th>操作四</th> 
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                { <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Depart)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectNameId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProjectManager)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ApplicationDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstimateDate_Use)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstimateTime_Start)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstimateTime_End)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PM_Review)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OML_Review)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Schedule)</td>
+                    <td>
+                        @Html.ActionLink("详情", "details", new { id = item.ID })
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", "edit", new { id = item.ID })
+                    </td>
+                    <td>
+                        @Html.ActionLink("审核", "check", new { id = item.ID })
+                    </td>
+                    <td>
+                        @Html.ActionLink("删除", "delete", new { id = item.ID })
+                    </td>
+                </tr>
+                }
+            </table>
+            <br />
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("packaginglist",
+                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+        </div>
+    </div>
+</body>
+</html>
+
