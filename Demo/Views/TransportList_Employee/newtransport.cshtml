@@ -1,0 +1,587 @@
+﻿@model HengXinSMS.Models.Transport
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/new-user.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/js/locales/bootstrap-datetimepicker.fr.js"></script>
+    <script src="~/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+  <script type="text/javascript">
+      $(function () {
+          $("#btn_Add").click(function () {
+              var username = $("#UserName").val();
+              var depart = $("#Depart").val();
+              var projectname = $("#ProjectName").val();
+              var projectnameid = $("#ProjectNameId").val();
+              var projectmanager = $("#ProjectManager").val();
+              var contractid = $("#ContractId").val();
+              var location = $("#Location").val();
+              var comapny = $("#Company").val();
+              var type = $("#Type").val();
+              var valueofgoods = $("#ValueofGoods").val();
+              var insurance = $("#Insurance").val();
+              var insuranceofamount = $("#InsuranceofAmount").val();
+              var estimatetime_start = $("#EstimateTime_Start").val();
+              var estimatetime_end = $("#EstimateTime_End").val();
+              var estimatedate_use = $("#EstimateDate_Use").val();
+              var estimatedate_completetime = $("#EstimateDate_CompleteTime").val();
+              var transportrequest = $("#TransportRequest").val();
+              var numoftruck = $("#NumofTruck").val();
+              var typeoftransport = $("#TypeofTransport").val();
+              var consignee = $("#Consignee").val();
+              var cargo = $("#Cargo").val();
+              var address = $("#Address").val();
+              var phone = $("#Phone").val();
+              var fax = $("#Fax").val();
+              var remark = $("#Remark").val();
+              if (username == "") {
+                  alert("用户名不能为空！");
+                  $("#UserName").focus();
+                  return;
+              }
+              if (depart == "") {
+                  alert("部门不能为空！");
+                  $("#Depart").focus();
+                  return;
+              }
+              if (projectname == "") {
+                  alert("项目名不能为空！");
+                  $("#ProjectName").focus();
+                  return;
+              }
+              if (projectnameid == "") {
+                  alert("项目号不能为空！");
+                  $("#ProjectName").focus();
+                  return;
+              }
+              if (projectmanager == "") {
+                  alert("项目经理不能为空！");
+                  $("#ProjectManager").focus();
+                  return;
+              }
+              if (contractid == "") {
+                  alert("合同号不能为空！");
+                  $("#ContractId").focus();
+                  return;
+              }
+              if (location == "") {
+                  alert("使用地点不能为空！");
+                  $("#Location").focus();
+                  return;
+              }
+            
+              if (comapny == "") {
+                  alert("公司不能为空！");
+                  $("#Company").focus();
+                  return;
+              }
+              if (type == "") {
+                  alert("运输类别不能为空！");
+                  $("#Type").focus();
+                  return;
+              }
+              if (valueofgoods == "") {
+                  alert("货物价值不能为空！");
+                  $("#ValueofGoods").focus();
+                  return;
+              }
+             
+              if (estimatetime_start == "") {
+                  alert("预开始时间不能为空！");
+                  $("#EstimateTime_Start").focus();
+                  return;
+              }
+              if (estimatetime_end == "") {
+                  alert("预结束时间不能为空！");
+                  $("#EstimateTime_End").focus();
+                  return;
+              }
+              if (estimatedate_use == "") {
+                  alert("预出货日期不能为空！");
+                  $("#EstimateDate_Use").focus();
+                  return;
+              }
+              if (estimatedate_completetime == "") {
+                  alert("预送达日期不能为空！");
+                  $("#EstimateTime_End").focus();
+                  return;
+              }
+              if (transportrequest == "") {
+                  alert("运输要求不能为空！");
+                  $("#TransportRequest").focus();
+                  return;
+              }
+              if (numoftruck == "") {
+                  alert("需车数量不能为空！");
+                  $("#NumofTruck").focus();
+                  return;
+              }
+              if (typeoftransport == "") {
+                  alert("运输方式不能为空！");
+                  $("#TypeofTransport").focus();
+                  return;
+              }
+              $.ajax({
+                  url: "/TransportList_Employee/addtransport",
+                  data: {
+                      "UserName": $("#UserName").val(),
+                      "Depart": $("#Depart").val(),
+                      "ProjectName": $("#ProjectName").val(),
+                      "ProjectNameId": $("#ProjectNameId").val(),
+                      "ProjectManager": $("#ProjectManager").val(),
+                      "ContractId": $("#ContractId").val(),
+                      "Location": $("#Location").val(),
+                      "Company": $("#Company").val(),
+                      "Type": $("#Type").val(),
+                      "ValueofGoods": $("#ValueofGoods").val(),
+                      "Insurance": $("#Insurance").val(),
+                      "InsuranceofAmount": $("#InsuranceofAmount").val(),
+                      "EstimateTime_Start": $("#EstimateTime_Start").val(),
+                      "EstimateTime_End": $("#EstimateTime_End").val(),
+                      "EstimateDate_Use": $("#EstimateDate_Use").val(),
+                      "EstimateDate_CompleteTime": $("#EstimateDate_CompleteTime").val(),
+                      "TransportRequest": $("#TransportRequest").val(),
+                      "NumofTruck": $("#NumofTruck").val(),
+                      "TypeofTransport": $("#TypeofTransport").val(),
+                      "Consignee": $("#Consignee").val(),
+                      "Cargo": $("#Cargo").val(),
+                      "Address": $("#Address").val(),
+                      "Phone": $("#Phone").val(),
+                      "Fax": $("#Fax").val(),
+                      "Remark": $("#Remark").val(),
+                  },
+                  type: "post",
+                  dataType: "text",
+                  success: function (msg) {
+                      if (msg == "Success") {
+                          alert("申请成功,即将跳转到申请页面，请一定仔细核对申请信息！");
+                          window.location.href = "/TransportList_Employee/transportlist";
+                      } else {
+                          alert("申请失败，请重新申请！");
+                      }
+                  }
+
+              });
+          });
+      });
+ </script>
+</head>
+<body>
+  <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home_EMPLOYEE\home"><img src="/img/logo.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_EMPLOYEE\home_today">Today</a></li>
+                    <li><a href="\Home_EMPLOYEE\home">Tomorrow</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Site Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_EMPLOYEE\home_today_1">Today</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_1">Tomorrow</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_third_1">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Welcome：@Session["UserName"] 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li >
+                <a href="\Home_EMPLOYEE\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList_Employee\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList_Employee\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList_Employee\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList_Employee\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\PackagingList_Employee\packaginglist">申请列表</a></li>
+                    <li><a href="\PackagingList_Employee\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList_Employee\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList_Employee\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\TransportList_Employee\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList_Employee\newtransport" class="active">运输申请</a></li>
+                    <li><a href="\TransportList_Employee\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList_Employee\after_Schedule" >安排完毕</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <div class="content">
+        <div id="pad-wrapper" class="new-user">
+            <div class="row header">
+                <div class="col-md-12">
+                    <h3>运输申请</h3>
+                </div>
+            </div>
+
+            <div class="row form-wrapper">
+                <!-- left column -->
+                <div class="col-md-9 with-sidebar">
+                    <div class="container">
+                        <form class="new_user_form">
+                            <div class="col-md-12 field-box">
+                                <label>申请人:</label>
+                                <input class="form-control" type="text" id="UserName" value="@Session["UserName"].ToString() " />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>部门:</label>
+                                <input class="col-md-9 form-control" type="text" id="Depart" value="@Session["Depart"].ToString() "/>
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>项目名:</label>
+                                <input class="col-md-9 form-control" type="text" id="ProjectName"value= "@Session["ProjectName"].ToString()" disabled='disabled'/>
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>项目号:</label>
+                                <input class="col-md-9 form-control" type="text" id="ProjectNameId" value="@Session["ProjectId"].ToString()"disabled='disabled'/>
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>项目经理:</label>
+                                <input class="form-control" type="text"id="ProjectManager" value="@Session["ProjectManager"].ToString()"disabled='disabled'/>
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>合同号:</label>
+                                <input class="col-md-9 form-control" type="text" id="ContractId" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>货物价值:</label>
+                                <input class="col-md-9 form-control" type="text" id="ValueofGoods" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>投保总额:</label>
+                                <input class="col-md-9 form-control" type="text" id="InsuranceofAmount" placeholder="这里只能输入阿拉伯数字，若无输入0" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>需车数量:</label>
+                                <input class="col-md-9 form-control" type="text" id="NumofTruck" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>备注:</label>
+                                <input class="col-md-9 form-control" type="text" id="Remark" />
+                            </div>
+
+                            <div class="col-md-12 field-box">
+                                <label>预出货日期:</label>
+                                <div class="input-append date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="EstimateDate_Use" data-link-format="yyyy-mm-dd">
+                                    <input class="form-control" type="text" value="" readonly="">
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                                <input type="hidden" id="EstimateDate_Use" value="" /><br />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>预开始时间(只选时间):</label>
+                                <div class="input-append date form_time_1" data-date="" data-date-format="hh:ii " data-link-field="EstimateTime_Start" data-link-format="hh:ii">
+                                    <input class="form-control" type="text" value="" readonly="">
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                                <input type="hidden" id="EstimateTime_Start" value="" /><br />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>预结束时间(只选时间):</label>
+                                <div class="input-append date form_time_2" data-date="" data-date-format="hh:ii" data-link-field="EstimateTime_End" data-link-format="hh:ii">
+                                    <input class="form-control" type="text" value="" readonly="">
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                                <input type="hidden" id="EstimateTime_End" value="" /><br />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>预送达日期:</label>
+                                <div class="input-append date form_date_1" data-date="" data-date-format="yyyy-mm-dd" data-link-field="EstimateDate_CompleteTime" data-link-format="yyyy-mm-dd">
+                                    <input class="form-control" type="text" value="" readonly="">
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                                <input type="hidden" id="EstimateDate_CompleteTime" value="" /><br />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>收货单位:</label>
+                                <input class="col-md-9 form-control" type="text" id="Consignee" />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>收货联系人:</label>
+                                <input class="col-md-9 form-control" type="text" id="Cargo" />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>收货地址:</label>
+                                <input class="col-md-9 form-control" type="text" id="Address" />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>收货人联系电话:</label>
+                                <input class="col-md-9 form-control" type="text" id="Phone" />
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>传真:</label>
+                                <input class="col-md-9 form-control" type="text" id="Fax" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>是否投保:</label>
+                                <div class="ui-select span5 ">
+                                    <select id="Insurance">
+                                        <option value="是">是</option>
+                                        <option value="否">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                          
+                              <div class="col-md-12 field-box">
+                                <label>公司:</label>
+                                <div class="ui-select span5 ">
+                                    <select id="Company">
+                                        <option value="YSW">YSW</option>
+                                        <option value="YWP">YWP</option>
+                                    </select>
+                                </div>
+                            </div>
+                              <div class="col-md-12 field-box">
+                                <label>类别:</label>
+                                <div class="ui-select span5 ">
+                                    <select id="Type">
+                                        <option value="进口">进口</option>
+                                        <option value="出口">出口</option>
+                                        <option value="国内">国内</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>运输要求:</label>
+                                <div class="ui-select span5">
+                                    <select id="TransportRequest">
+                                        <option value="平板车">平板车</option>
+                                        <option value="厢式车">厢式车</option>
+                                        <option value="飞翼车">飞翼车</option>
+                                        <option value="20GP">20GP</option>
+                                        <option value="40GP">40GP</option>
+                                        <option value="40HC">40HC</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="col-md-12 field-box">
+                                <label>运输方式:</label>
+                                <div class="ui-select span5 ">
+                                    <select id="TypeofTransport">
+                                        <option value="专车">专车</option>
+                                        <option value="拼车">拼车</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>地点:</label>
+                                <div class="ui-select span5 ">
+                                    <select id="Location">
+                                        <option value="YSW">YSW</option>
+                                         <option value="YWP">YWP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-11 field-box actions">
+                                <input type="button" class="btn-glow primary" value="申请" id="btn_Add">
+                                <span>或</span>
+                                <input type="reset" value="取消" class="reset">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                 <!-- side right column -->
+                <div class="col-md-3 form-sidebar pull-right">
+                   <div class="btn-group toggle-inputs hidden-tablet">
+                        <button class="glow left active" data-input="normal">普通输入</button>
+                        <button class="glow right" data-input="inline">下划线输入</button>
+                    </div>
+                    <div class="alert alert-info hidden-tablet">
+                        <i class="icon-lightbulb pull-left"></i>
+                        若有申请文件，请先上传，然后再填写申请明细！
+                    </div>
+                    <h6>上传申请附件</h6>
+                    @using (Html.BeginForm("uploadfile", "TransportList_Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {  <div>
+                        <span>
+                            <input type="file" name="File" /></span>
+                        <span>
+                            <input type="submit" value="提交" /></span>
+                    </div>      
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+	<!-- scripts -->
+  
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            // toggle form between inline and normal inputs
+            var $buttons = $(".toggle-inputs button");
+            var $form = $("form.new_user_form");
+
+            $buttons.click(function () {
+                var mode = $(this).data("input");
+                $buttons.removeClass("active");
+                $(this).addClass("active");
+
+                if (mode === "inline") {
+                    $form.addClass("inline-input");
+                } else {
+                    $form.removeClass("inline-input");
+                }
+            });
+        });
+ </script>
+<script src="~/js/jquery-1.8.3.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/bootstrap-datetimepicker.js"></script>
+<script src="~/js/locales/bootstrap-datetimepicker.fr.js"></script>
+<script src="~/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_date_1').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time_1').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+    $('.form_time_2').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+</body>
+</html>
