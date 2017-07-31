@@ -1,0 +1,330 @@
+﻿@using HengXinSMS.Models
+@model HengXinSMS.Controllers.SiteManagementController.viewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="180">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+    <script src="~/js/echarts.js"></script>
+</head>
+<body >
+   <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home\home"><img src="/img/logo.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home\home_today">Today</a></li>
+                    <li><a href="#">Tomorrow</a></li>
+                    <li><a href="\Home\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Schedule Status
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\SiteManagement\sitemanagement_1_completed">Able</a></li>
+                    <li><a href="\SiteManagement\sitemanagement_1">Enable</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Single Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\ForkliftList\forkliftlistOfywp">FORKFITFS  IN  YWP</a></li>
+                    <li><a href="\PackagingList\packaginglistOfywp">PACKAGINGLIST  IN  YWP</a></li>
+                    <li><a href="\TransportList\transportlistOfywp">TRANSPORTS  IN  YWP</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown"> Welcome：@Session["UserName"]
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                <a href="\Home\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>用户管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li><a href="\UserList\userlist">用户列表</a></li>
+                   <li ><a href="\UserList\newuser">添加用户</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-briefcase"></i>
+                    <span>项目管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ProjectList\projectlist">项目列表</a></li>
+                    <li><a href="\ProjectList\newproject">添加项目</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList\checkforklift">OML审核</a></li>
+                    <li><a href="\ForkliftList\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList\after_Schedule">费用管理</a></li>
+                    <li><a href="\ForkliftList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList\projectlist" >选择项目</a></li>
+                    <li><a href="\PackagingList\packaginglist">申请列表</a></li>
+                    <li><a href="\PackagingList\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList\checkpackaging" >OML审核</a></li>
+                    <li><a href="\PackagingList\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList\after_Schedule">费用管理</a></li>
+                    <li><a href="\PackagingList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList\projectlist" >选择项目</a></li>
+                    <li><a href="\TransportList\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList\newtransport">运输申请</a></li>
+                    <li><a href="\TransportList\checktransports">OML审核</a></li>
+                    <li><a href="\TransportList\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList\after_Schedule">费用管理</a></li>
+                    <li><a href="\TransportList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-ok"></i>
+                    <span>场地安排</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\SiteManagement\sitemanagement">安排列表(YSW)</a></li>
+                    <li><a href="\SiteManagement\sitemanagement_1"  class="active">安排列表(YWP)</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-th-large"></i>
+                    <span>报表明细</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li><a href="\Report_Forklift.aspx" >叉车报表</a></li>
+                    <li><a href="\Report_Packaging.aspx" >包装报表</a></li>
+                    <li><a href="\Report_Transport.aspx">运输报表</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <div class="content">
+        <div id="pad-wrapper">
+            <div class="row">
+                 <h2>@ViewBag.Tomorrow  YWP场地待安排申请</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th >
+                                 所在表中编号
+                            </th>
+                             <th >
+                                 申请号
+                            </th>
+                            <th >
+                                <span class="line"></span>申请人
+                            </th>
+                            <th >
+                                <span class="line"></span>部门
+                            </th>
+                            <th >
+                                <span class="line"></span>项目名
+                            </th>
+                            <th >
+                                <span class="line"></span>项目号
+                            </th>
+                            <th >
+                                <span class="line"></span>预使用日期
+                            </th>
+                            <th >
+                                <span class="line"></span>预开始时间
+                            </th>
+                            <th>
+                                <span class="line"></span>预结束时间
+                            </th>
+                            <th >
+                                <span class="line"></span>PM审核
+                            </th>
+                            <th >
+                                <span class="line"></span>OML审核
+                            </th>
+                            <th >
+                                <span class="line"></span>申请类型
+                            </th>
+                             <th >
+                                <span class="line"></span>安排状态
+                            </th>
+                             <th >
+                                <span class="line"></span>操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.forklifts)
+                    {
+                      <tr>  
+                          <td> 
+                             <a>@item.ID</a> 
+                          </td>
+                          <td>@item.ApplyId</td>
+                          <td>@item.UserName</td>
+                          <td>@item.Depart</td>
+                          <td>@item.ProjectName</td>
+                          <td>@item.ProjectNameId</td>
+                          <td>@item.EstimateDate_Use.ToString("yyyy/MM/dd")</td>
+                          <td>@item.EstimateTime_Start.ToString("hh:mm")</td>
+                          <td>@item.EstimateTime_End.ToString("hh:mm")</td>
+                          <td>@item.PM_Review</td>
+                          <td>@item.OML_Review</td>
+                          <td>@item.Flag</td>
+                          <td>@item.Schedule</td>
+                          <td>@Html.ActionLink("安排", "schedule_forklift", new { id = item.ID })</td>
+                      </tr>
+                       
+                    }
+                    </tbody>
+                    <tbody>
+                    @foreach (var item in Model.packagings)
+                    {
+                      <tr>
+                         
+                          <td> 
+                             <a>@item.ID</a> 
+                          </td>
+                          <td>@item.ApplyId</td>
+                          <td>@item.UserName</td>
+                          <td>@item.Depart</td>
+                          <td>@item.ProjectName</td>
+                          <td>@item.ProjectNameId</td>
+                          <td>@item.EstimateDate_Use.ToString("yyyy/MM/dd")</td>
+                          <td>@item.EstimateTime_Start.ToString("hh:mm")</td>
+                          <td>@item.EstimateTime_End.ToString("hh:mm")</td>
+                          <td>@item.PM_Review</td>
+                          <td>@item.OML_Review</td>
+                          <td>@item.Flag</td>
+                           <td>@item.Schedule</td>
+                          <td>@Html.ActionLink("安排", "schedule_packaging", new { id = item.ID })</td>
+                      </tr>       
+                    }
+                    </tbody>
+                    <tbody>
+                    @foreach (var item in Model.transports)
+                    {
+                      <tr>
+                         
+                          <td> 
+                             <a>@item.ID</a> 
+                          </td>
+                          <td>@item.ApplyId</td>
+                          <td>@item.UserName</td>
+                          <td>@item.Depart</td>
+                          <td>@item.ProjectName</td>
+                          <td>@item.ProjectNameId</td>
+                          <td>@item.EstimateDate_Use.ToString("yyyy/MM/dd")</td>
+                          <td>@item.EstimateTime_Start.ToString("hh:mm")</td>
+                          <td>@item.EstimateTime_End.ToString("hh:mm")</td>
+                          <td>@item.PM_Review</td>
+                          <td>@item.OML_Review</td>
+                          <td>@item.Flag</td>
+                          <td>@item.Schedule</td>
+                           <td>@Html.ActionLink("安排", "schedule_transport", new { id = item.ID })</td>
+                      </tr>       
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
+
