@@ -1,0 +1,342 @@
+﻿@model HengXinSMS.Models.User
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+    <link href="~/css/compiled/new-user.css" rel="stylesheet" />
+  <script type="text/javascript">
+      $(function () {
+          $("#btn_Add").click(function () {
+              var projectmanager = $("#ProjectManager").val();
+              var projectname = $("#ProjectName").val();
+              var projectnameid = $("#ProjectNameId").val();
+              var members = $("#Members").val();
+              if (projectmanager == "") {
+                  alert("项目经理不能为空！");
+                  $("#ProjectManager").focus();
+                  return;
+              }
+              if (projectname == "") {
+                  alert("项目名称不能为空！");
+                  $("#ProjectName").focus();
+                  return;
+              }
+              if (projectnameid == "") {
+                  alert("项目编号称不能为空！");
+                  $("#ProjectNameId").focus();
+                  return;
+              }
+              if ( members== "") {
+                  alert("项目成员称不能为空！");
+                  $("#Members").focus();
+                  return;
+              }
+              $.ajax({
+                  url: "/ProjectList/addproject",
+                  data: {
+                      "ProjectManager": $("#ProjectManager").val(),
+                      "ProjectName": $("#ProjectName").val(),
+                      "ProjectNameId": $("#ProjectNameId").val(),
+                      "Members": $("#Members").val(),
+                        },
+                  type: "post",
+                  dataType: "text",
+                  success: function (msg) {
+                      if (msg == "Success") {
+                          alert("添加成功！");
+                          window.location.href = "/ProjectList/ProjectList";
+                      } else {
+                          alert("添加失败！");
+                      }
+                  }
+
+              });
+          });
+      });
+ </script>
+</head>
+<body>
+   <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home\home"><img src="/img/logo.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home\home_today">Today</a></li>
+                    <li><a href="\Home\home">Tomorrow</a></li>
+                    <li><a href="\Home\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Site Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home\home_today_1">Today</a></li>
+                    <li><a href="\Home\home_1">Tomorrow</a></li>
+                    <li><a href="\Home\home_third_1">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown"> Welcome：@Session["UserName"] 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li >
+                <a href="\Home\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>用户管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li><a href="\UserList\userlist">用户列表</a></li>
+                   <li ><a href="\UserList\newuser">添加用户</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-briefcase"></i>
+                    <span>项目管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ProjectList\projectlist">项目列表</a></li>
+                    <li><a href="\ProjectList\newproject" class="active">添加项目</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList\checkforklift">OML审核</a></li>
+                    <li><a href="\ForkliftList\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList\after_Schedule">费用管理</a></li>
+                    <li><a href="\ForkliftList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList\projectlist" >选择项目</a></li>
+                    <li><a href="\PackagingList\packaginglist">申请列表</a></li>
+                    <li><a href="\PackagingList\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList\checkpackaging" >OML审核</a></li>
+                    <li><a href="\PackagingList\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList\after_Schedule">费用管理</a></li>
+                    <li><a href="\PackagingList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList\projectlist" >选择项目</a></li>
+                    <li><a href="\TransportList\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList\newtransport">运输申请</a></li>
+                    <li><a href="\TransportList\checktransports">OML审核</a></li>
+                    <li><a href="\TransportList\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList\after_Schedule">费用管理</a></li>
+                    <li><a href="\TransportList\after_Schedule_1">费用记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-ok"></i>
+                    <span>场地安排</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\SiteManagement\sitemanagement">安排列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-th-large"></i>
+                    <span>报表明细</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList\test">叉车报表</a></li>
+                    <li><a href="datatables.html">包装报表</a></li>
+                    <li><a href="tables.html">运输报表</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-folder-close"></i>
+                    <span>文件检索</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\Forklifts">叉车申请文件</a></li>
+                    <li><a href="\Packagings">包装申请文件</a></li>
+                    <li><a href="\Transports">运输申请文件</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <div class="content">
+        <div id="pad-wrapper" class="new-user">
+            <div class="row header">
+                <div class="col-md-12">
+                    <h3>添加项目</h3>
+                </div>                
+            </div>
+
+            <div class="row form-wrapper">
+                <!-- left column -->
+                <div class="col-md-9 with-sidebar">
+                    <div class="container">
+                        <form class="new_user_form">
+                            <div class="col-md-12 field-box">
+                                <label>项目经理:</label>
+                                <input class="form-control" type="text"id="ProjectManager" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>项目名称:</label>
+                                <input class="col-md-9 form-control" type="text"id="ProjectName" />
+                            </div>
+                            <div class="col-md-12 field-box">
+                                <label>项目编号:</label>
+                                <input class="col-md-9 form-control" type="text" id="ProjectNameId"/>
+                            </div>
+                              <div class="col-md-12 field-box">
+                                <label>项目成员:</label>
+                                <input class="col-md-9 form-control" type="text" id="Members"/>
+                            </div>
+                            <div class="col-md-11 field-box actions">
+                                <input type="button" class="btn-glow primary" value="添加"id="btn_Add">
+                                <span>或</span>
+                                <input type="reset" value="取消" class="reset">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- side right column -->
+                <div class="col-md-3 form-sidebar pull-right">
+                    <div class="btn-group toggle-inputs hidden-tablet">
+                        <button class="glow left active" data-input="normal">普通输入</button>
+                        <button class="glow right" data-input="inline">下划线输入</button>
+                    </div>
+                    <div class="alert alert-info hidden-tablet">
+                        <i class="icon-lightbulb pull-left"></i>
+                        Click above to see difference between inline and normal inputs on a form
+                    </div>                        
+                    <h6>Sidebar text for instructions</h6>
+                    <p>Add multiple users at once</p>
+                    <p>Choose one of the following file types:</p>
+                    <ul>
+                        <li><a href="#">Upload a vCard file</a></li>
+                        <li><a href="#">Import from a CSV file</a></li>
+                        <li><a href="#">Import from an Excel file</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+   
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // toggle form between inline and normal inputs
+            var $buttons = $(".toggle-inputs button");
+            var $form = $("form.new_user_form");
+
+            $buttons.click(function () {
+                var mode = $(this).data("input");
+                $buttons.removeClass("active");
+                $(this).addClass("active");
+
+                if (mode === "inline") {
+                    $form.addClass("inline-input");
+                } else {
+                    $form.removeClass("inline-input");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
