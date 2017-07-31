@@ -1,0 +1,236 @@
+﻿@model HengXinSMS.Models.Packaging
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>横新软件工程智能调配系统</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/css/bootstrap/bootstrap-overrides.css" rel="stylesheet" />
+    <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/compiled/icons.css" rel="stylesheet" />
+    <link href="~/css/compiled/layout.css" rel="stylesheet" />
+    <link href="~/css/compiled/elements.css" rel="stylesheet" />
+    <link href="~/css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/compiled/signin.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/theme.js"></script>
+    <script src="~/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.min.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/index.css" rel="stylesheet" />
+    <script src="~/js/jquery.knob.js"></script>
+    <link href="~/css/compiled/skins/dark.css" rel="stylesheet" />
+    <link href="~/css/compiled/new-user.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="\Home_EMPLOYEE\home"><img src="/img/logo.png" /></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Date Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_EMPLOYEE\home_today">Today</a></li>
+                    <li><a href="\Home_EMPLOYEE\home">Tomorrow</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_third">The day after tomorrow</a></li>
+                </ul>
+            </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Site Select
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\Home_EMPLOYEE\home_today_1">Today</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_1">Tomorrow</a></li>
+                    <li><a href="\Home_EMPLOYEE\home_third_1">The day after tomorrow</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">Welcome：@Session["UserName"] 
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="\UserList\userinfo">Personal info</a></li>
+                    <li><a href="\Login\login">logo out</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="\Login\login" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li >
+                 <a href="\Home_EMPLOYEE\home">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>叉车管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\ForkliftList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\ForkliftList_Employee\forkliftlist">申请列表</a></li>
+                    <li><a href="\ForkliftList_Employee\newforklift">叉车申请</a></li>
+                    <li><a href="\ForkliftList_Employee\successforklift">审核完毕</a></li>
+                    <li><a href="\ForkliftList_Employee\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-wrench"></i>
+                    <span>包装管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\PackagingList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\PackagingList_Employee\packaginglist">申请列表</a></li>
+                    <li><a href="\PackagingList_Employee\newpackaging">包装申请</a></li>
+                    <li><a href="\PackagingList_Employee\successpackaging">审核完毕</a></li>
+                    <li><a href="\PackagingList_Employee\after_Schedule" >安排完毕</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-truck"></i>
+                    <span>运输管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="\TransportList_Employee\projectlist">选择项目</a></li>
+                    <li><a href="\TransportList_Employee\transportlist">申请列表</a></li>
+                    <li><a href="\TransportList_Employee\newtransport">运输申请</a></li>
+                    <li><a href="\TransportList_Employee\successtransport">审核完毕</a></li>
+                    <li><a href="\TransportList_Employee\after_Schedule">安排完毕</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+     <div class="content">
+        <div id="pad-wrapper" class="new-user">
+            <div class="row header">
+                <div class="col-md-12">
+                    <h3>包装申请详情</h3>
+                </div>                
+            </div>
+
+            <div class="row form-wrapper">
+                <!-- left column -->
+                <div class="col-md-9 with-sidebar">
+                    <div class="container">
+                        <form class="new_user_form">
+                            <div class="col-md-12 field-box">
+                               <dl class="dl-horizontal">
+                                <label>编号:</label>
+                                <input class="form-control" type="text"id="ID" value=" @Html.DisplayFor(model => model.ID)" />                           </dl>    
+                               <dl class="dl-horizontal">
+                                <label>申请人:</label>
+                                <input class="form-control" type="text"id="UserName" value=" @Html.DisplayFor(model => model.UserName)" />                           </dl>
+                                <dl class="dl-horizontal">
+                                <label>部门:</label>
+                                <input class="form-control" type="text"id="Depart" value=" @Html.DisplayFor(model => model.Depart)" />                           </dl>                   
+                               <dl class="dl-horizontal">
+                                <label>项目名:</label>
+                                <input class="form-control" type="text"id="ProjectName" value=" @Html.DisplayFor(model => model.ProjectName)" />                           </dl>
+                                <dl class="dl-horizontal">
+                                    <label>项目号:</label>
+                                    <input class="form-control" type="text"id="ProjectId" value=" @Html.DisplayFor(model => model.ProjectNameId)" />
+                                </dl> 
+                                 <dl class="dl-horizontal">
+                                    <label>项目经理:</label>
+                                    <input class="form-control" type="text"id="ProjectManager" value=" @Html.DisplayFor(model => model.ProjectManager)" />
+                                </dl>                      
+                                <dl class="dl-horizontal">
+                                <label>申请日期:</label>
+                                <input class="form-control" type="text"id="ApplicationDate" value=" @Html.DisplayFor(model => model.ApplicationDate)" />                           </dl>                 
+                               <dl class="dl-horizontal">
+                                <label>预开始日期:</label>
+                                <input class="form-control" type="text"id="EstimateDate_Use" value=" @Html.DisplayFor(model => model.EstimateDate_Use)" />                           </dl>
+                                 <dl class="dl-horizontal">
+                                <label>预结开始时间:</label>
+                                <input class="form-control" type="text"id="EstimateTime_Start" value=" @Html.DisplayFor(model => model.EstimateTime_Start)" />                           </dl>  
+                                 <dl class="dl-horizontal">
+                                <label>预结束时间:</label>
+                                <input class="form-control" type="text"id="EstimateTime_End" value=" @Html.DisplayFor(model => model.EstimateTime_End)" />                           </dl>  
+                                 <dl class="dl-horizontal">
+                                <label>包装要求:</label>
+                                <input class="form-control" type="text"id="PackageofRequest" value=" @Html.DisplayFor(model => model.PackageofRequest)" />                           </dl>
+                                <dl class="dl-horizontal">
+                                <label>包装尺寸:</label>
+                                 <input class="form-control" type="text"id="PackageofSize" value=" @Html.DisplayFor(model => model.PackageofSize)" />
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <label>包装数量:</label>
+                                    <input class="form-control" type="text"id="NumofPackage" value=" @Html.DisplayFor(model => model.NumofPackage)" />
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <label>补充信息:</label>
+                                    <input class="form-control" type="text"id="Annex" value=" @Html.DisplayFor(model => model.Annex)" />
+                                </dl>  
+                                <dl class="dl-horizontal">
+                                    <label>位置:</label>
+                                    <input class="form-control" type="text"id="Location" value=" @Html.DisplayFor(model => model.Location)" />
+                                </dl>        
+                                <dl class="dl-horizontal">
+                                    <label>是否标标贴:</label>
+                                    <input class="form-control" type="text"id="Amount" value=" @Html.DisplayFor(model => model.TrgofPackage)" />
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <label>PM审核:</label>
+                                    <input class="form-control" type="text"id="PM_Review" value=" @Html.DisplayFor(model => model.PM_Review)" />
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <label>OML审核:</label>
+                                    <input class="form-control" type="text"id="OML_Review" value=" @Html.DisplayFor(model => model.OML_Review)" />
+                                </dl>
+                                 <dl class="dl-horizontal">
+                                    <label>标志:</label>
+                                    <input class="form-control" type="text"id="Flag" value=" @Html.DisplayFor(model => model.Flag)" />
+                                </dl>   
+                                <dl class="dl-horizontal">
+                                    <label>状态:</label>
+                                    <input class="form-control" type="text"id="Sattus" value=" @Html.DisplayFor(model => model.Status)" />
+                                </dl>    
+                                <dl class="dl-horizontal">
+                                    <label>安排:</label>
+                                    <input class="form-control" type="text"id="Schedule" value=" @Html.DisplayFor(model => model.Schedule)" />
+                                </dl>             |
+                               @Html.ActionLink("返回", "packaginglist")
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+</body>
+</html>
